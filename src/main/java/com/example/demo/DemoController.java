@@ -82,4 +82,33 @@ public class DemoController {
 		}
 		return response;
 	}
+
+	@GetMapping("/doesFootballerExist")
+	public boolean doesFootballerExist(
+		@RequestParam String footballerName,
+		@RequestParam int age,
+		@RequestParam String clubName,
+		@RequestParam String leagueName
+	) {
+		List<Footballer> footballers = new ArrayList<>();
+		Club psg = new Club("PSG", "League 1");
+		Club alNassr = new Club("Al Nassr", "Pro League");
+		Footballer messi = new Footballer("Messi", 35, psg);
+		Footballer ronaldo = new Footballer("Ronaldo", 38, alNassr);
+		Footballer neymar = new Footballer("Neymar", 31, psg);
+		footballers.add(messi);
+		footballers.add(ronaldo);
+		footballers.add(neymar);
+		for (Footballer f : footballers) {
+			if (
+				f.name().equals(footballerName) &&
+				f.age() == age &&
+				f.club().name().equals(clubName) &&
+				f.club().league().equals(leagueName)
+			) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
