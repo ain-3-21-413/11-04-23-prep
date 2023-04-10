@@ -23,4 +23,11 @@ public class DemoController {
 	public Map<String, Integer> map() {
 		return Map.of("messi", 35, "ronaldo", 38, "neymar", 31);
 	}
+
+	@GetMapping("/footballer")
+	public Footballer footballer() {
+		Club psg = new Club("PSG", "League 1");
+		Footballer messi = new Footballer("Messi", 35, psg);
+		return messi;
+	}
 }
