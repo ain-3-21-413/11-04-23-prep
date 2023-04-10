@@ -30,4 +30,14 @@ public class DemoController {
 		Footballer messi = new Footballer("Messi", 35, psg);
 		return messi;
 	}
+
+	@GetMapping("/footballers")
+	public List<Footballer> footballers() {
+		Club psg = new Club("PSG", "League 1");
+		Club alNassr = new Club("Al Nassr", "Pro League");
+		Footballer messi = new Footballer("Messi", 35, psg);
+		Footballer ronaldo = new Footballer("Ronaldo", 38, alNassr);
+		Footballer neymar = new Footballer("Neymar", 31, psg);
+		return List.of(messi, ronaldo, neymar);
+	}
 }
