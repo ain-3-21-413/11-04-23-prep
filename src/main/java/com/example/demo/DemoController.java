@@ -1,9 +1,11 @@
 package com.example.demo;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -39,5 +41,25 @@ public class DemoController {
 		Footballer ronaldo = new Footballer("Ronaldo", 38, alNassr);
 		Footballer neymar = new Footballer("Neymar", 31, psg);
 		return List.of(messi, ronaldo, neymar);
+	}
+
+	@GetMapping("/getFootballer")
+	public Footballer getFootballer(@RequestParam String name) {
+		List<Footballer> footballers = new ArrayList<>();
+		Footballer footballer = null;
+		Club psg = new Club("PSG", "League 1");
+		Club alNassr = new Club("Al Nassr", "Pro League");
+		Footballer messi = new Footballer("Messi", 35, psg);
+		Footballer ronaldo = new Footballer("Ronaldo", 38, alNassr);
+		Footballer neymar = new Footballer("Neymar", 31, psg);
+		footballers.add(messi);
+		footballers.add(ronaldo);
+		footballers.add(neymar);
+		for (Footballer f : footballers) {
+			if (f.name().equals(name)) {
+				footballer = f;
+			}
+		}
+		return footballer;
 	}
 }
